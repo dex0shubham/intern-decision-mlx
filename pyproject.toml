@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "intern-decision-mlx"
+version = "0.1.0"
+description = "Screenshot + questions -> calibrated typed decisions, locally on Apple silicon (Intern-Decision on MLX)."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+requires-python = ">=3.10"
+authors = [{ name = "dex0shubham" }]
+keywords = ["mlx", "apple-silicon", "decision-model", "vision", "computer-use", "jev", "typed-decisions", "calibration"]
+classifiers = [
+  "Operating System :: MacOS",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = ["mlx-vlm>=0.7.3,<0.8", "numpy", "pillow"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.urls]
+Homepage = "https://github.com/dex0shubham/intern-decision-mlx"
+Model = "https://huggingface.co/internlm/Intern-Decision-0.8B"
+
+[project.scripts]
+intern-decision-mlx = "intern_decision_mlx.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+intern_decision_mlx = ["assets/*"]

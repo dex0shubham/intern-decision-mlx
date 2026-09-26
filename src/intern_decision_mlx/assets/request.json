@@ -1,0 +1,27 @@
+{
+  "state": {"user_goal": "Get the double charge refunded"},
+  "questions": {
+    "screen": {
+      "type": "choice",
+      "instructions": "What does this screen show?",
+      "criteria": {
+        "payment_error": "A payment or billing error",
+        "login": "A login form",
+        "success": "A success confirmation",
+        "empty": "An empty page"
+      }
+    },
+    "has_error": {
+      "type": "noul",
+      "instructions": "Does the screen show an error message?"
+    },
+    "next_click": {
+      "type": "choice",
+      "instructions": "Which button should the agent click to pursue the user's goal?",
+      "criteria": {
+        "delete_account": "The 'Delete account' button",
+        "contact_support": "The 'Contact support' button"
+      }
+    }
+  }
+}

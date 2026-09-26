@@ -1,0 +1,11 @@
+intern-decision-mlx
+Copyright 2026 dex0shubham
+
+This product includes software from Intern-Decision by Shanghai AI Laboratory
+(https://huggingface.co/internlm/Intern-Decision-0.8B), licensed under the
+Apache License, Version 2.0: src/intern_decision_mlx/_ref.py is vendored from
+its inference.py, with the changes listed in that file's header.
+
+The model weights are not included; they are downloaded from Hugging Face under
+their own Apache-2.0 licence. Model loading uses mlx-vlm (MIT,
+https://github.com/Blaizzy/mlx-vlm).
