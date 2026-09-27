@@ -40,7 +40,13 @@ def cmd_decide(args):
             raise ValueError(f"no such image: {p}")
     if args.image:
         req["images"] = list(req.get("images") or []) + [str(Path(p).resolve()) for p in args.image]
-    print(json.dumps(_decider(args).predict(req), indent=2, ensure_ascii=False))
+    out = _decider(args).predict(req)
+    if not args.brief:
+        return print(json.dumps(out, indent=2, ensure_ascii=False))
+    width = max(map(len, out["answers"]))
+    for field, answer in out["answers"].items():
+        print(f"{field:<{width}}  {str(answer['decision']):<18} {answer['confidence']:.2f}")
+    print(f"({out['usage']['input_tokens']} tokens, {out['timing']['inference_ms'] / 1000:.2f} s)")
 
 
 def make_server(decider, host="127.0.0.1", port=8765, allow_root=None):
@@ -188,6 +194,7 @@ def main(argv=None):
     d = sub.add_parser("decide", parents=[common], help="run one request and print the JSON")
     d.add_argument("request", nargs="?", help="request JSON file, or - for stdin (default: bundled example)")
     d.add_argument("--image", action="append", help="add a local image (repeatable)")
+    d.add_argument("--brief", action="store_true", help="one line per answer instead of the full JSON")
     d.set_defaults(fn=cmd_decide)
 
     s = sub.add_parser("serve", parents=[common], help="serve POST /v1/systemone on localhost")

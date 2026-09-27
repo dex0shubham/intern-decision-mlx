@@ -10,19 +10,21 @@ This runs Shanghai AI Lab's [Intern-Decision-0.8B](https://huggingface.co/intern
 This package adds the part that makes it a decision model: the typed readout, the calibration,
 and a local `POST /v1/systemone` endpoint. Its answers match the lab's own PyTorch reference.
 
+![A terminal runs intern-decision-mlx on a 1080p screenshot of a payment error dialog and prints three typed decisions with probabilities in 0.88 s](https://raw.githubusercontent.com/dex0shubham/intern-decision-mlx/main/docs/demo.gif)
+
 ```bash
 pip install intern-decision-mlx
-intern-decision-mlx decide        # first run downloads 1.7 GB of weights
+intern-decision-mlx decide --brief        # first run downloads 1.7 GB of weights
 ```
 
-<img src="https://raw.githubusercontent.com/dex0shubham/intern-decision-mlx/main/src/intern_decision_mlx/assets/screenshot.png" width="360" alt="A dialog showing a payment error with a red Delete account button and a grey Contact support button">
-
-With the goal "Get the double charge refunded", the bundled example answers:
+The bundled example is a payment-error dialog with a red "Delete account" button and a grey
+"Contact support" button, and the goal "Get the double charge refunded":
 
 ```
-screen      payment_error      0.739
-has_error   yes                0.886
-next_click  contact_support    0.612
+screen      payment_error      0.74
+has_error   yes                0.89
+next_click  contact_support    0.61
+(509 tokens, 0.58 s)
 ```
 
 Every answer comes with a probability for every option, so you can act on the confident ones
