@@ -100,8 +100,9 @@ so start at 1024 and check on your own screens.
 | Peak Metal memory | 2.1 GB |
 | Model load | 1.4 to 2.0 s |
 
-The model card's 34 ms was measured on an RTX 4090. `intern-decision-mlx bench` reproduces the
-numbers on your machine.
+The model card's 34 ms was measured on an RTX 4090. `intern-decision-mlx bench` measures latency
+and peak memory on your machine with the bundled 512×384 example (`--no-image` for text only). It
+does not reproduce the 1080p rows above, which used a 1920×1080 screenshot that is not bundled.
 
 ## The cost it replaces
 
